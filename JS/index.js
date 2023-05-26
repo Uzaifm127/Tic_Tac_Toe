@@ -9,10 +9,10 @@ const divClassTurn = document.querySelector(".turn");
 // const turnSound = new Audio("/Music/chance.wav");
 // const resetSound = new Audio("/Music/reset.wav");
 // const winSound = new Audio("/Music/win.wav");
-const endSound = new Audio("Tic_Tac_Toe/Music/gameover.wav");
-const turnSound = new Audio("Tic_Tac_Toe/Music/chance.wav");
-const resetSound = new Audio("Tic_Tac_Toe/Music/reset.wav");
-const winSound = new Audio("Tic_Tac_Toe/Music/win.wav");
+const endSound = new Audio("/Tic_Tac_Toe/Music/gameover.wav");
+const turnSound = new Audio("/Tic_Tac_Toe/Music/chance.wav");
+const resetSound = new Audio("/Tic_Tac_Toe/Music/reset.wav");
+const winSound = new Audio("/Tic_Tac_Toe/Music/win.wav");
 const winChance = [
   [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontally
   [0, 3, 6], [1, 4, 7], [2, 5, 8], // vertically
