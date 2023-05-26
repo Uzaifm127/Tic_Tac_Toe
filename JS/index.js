@@ -1,173 +1,93 @@
+const spanXorO = document.querySelector(".turn span");
 const boxes = document.querySelectorAll(".boxes");
+const boxContent = document.querySelectorAll(".boxContent");
 const resetButton = document.querySelector(".btn");
 const winnerLines = document.querySelectorAll(".winnerLines");
 const winner = document.querySelector(".winner");
 const divClassTurn = document.querySelector(".turn");
-const winnerImage = document.querySelector(".winnerImage");
-let currentPlayer = "X";
+// const endSound = new Audio("/Music/gameover.wav");
+// const turnSound = new Audio("/Music/chance.wav");
+// const resetSound = new Audio("/Music/reset.wav");
+// const winSound = new Audio("/Music/win.wav");
+const endSound = new Audio("Tic_Tac_Toe/Music/gameover.wav");
+const turnSound = new Audio("Tic_Tac_Toe/Music/chance.wav");
+const resetSound = new Audio("Tic_Tac_Toe/Music/reset.wav");
+const winSound = new Audio("Tic_Tac_Toe/Music/win.wav");
+const winChance = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontally
+  [0, 3, 6], [1, 4, 7], [2, 5, 8], // vertically
+  [0, 4, 8], [2, 4, 6], // diagonally
+];
 let turn = "X";
 let chances = 0;
 let gameOver = false;
 
-// change turn function
-const changeTurn = () => {
-  return (turn = turn === "X" ? "o" : "X");
-};
-
-// checkWin function
 const checkWin = () => {
-  if (
-    boxes[0].innerHTML === boxes[1].innerHTML &&
-    boxes[1].innerHTML === boxes[2].innerHTML &&
-    boxes[0].innerHTML !== ""
-  ) {
-    // divClassTurn.setAttribute("hidden", "")
-    winnerLines[0].style.width = "100%";
-    divClassTurn.hidden = true;
-    winner.style.fontSize = "5vmax";
-    winner.innerHTML = `${boxes[1].innerHTML} Wins`;
-    winnerImage.style.opacity = "1";
-    gameOver = true;
-    resetButton.style.top = "8.5%";
-  } else if (
-    boxes[3].innerHTML === boxes[4].innerHTML &&
-    boxes[4].innerHTML === boxes[5].innerHTML &&
-    boxes[3].innerHTML !== ""
-  ) {
-    // divClassTurn.setAttribute("hidden", "")
-    winnerLines[1].style.width = "100%";
-    divClassTurn.hidden = true;
-    winner.style.fontSize = "5vmax";
-    winner.innerHTML = `${boxes[4].innerHTML} Wins`;
-    winnerImage.style.opacity = "1";
-    gameOver = true;
-    resetButton.style.top = "8.5%";
-  } else if (
-    boxes[6].innerHTML === boxes[7].innerHTML &&
-    boxes[7].innerHTML === boxes[8].innerHTML &&
-    boxes[6].innerHTML !== ""
-  ) {
-    // divClassTurn.setAttribute("hidden", "")
-    winnerLines[2].style.width = "100%";
-    divClassTurn.hidden = true;
-    winner.style.fontSize = "5vmax";
-    winner.innerHTML = `${boxes[7].innerHTML} Wins`;
-    winnerImage.style.opacity = "1";
-    gameOver = true;
-    resetButton.style.top = "8.5%";
-  } else if (
-    boxes[0].innerHTML === boxes[3].innerHTML &&
-    boxes[3].innerHTML === boxes[6].innerHTML &&
-    boxes[0].innerHTML !== ""
-  ) {
-    // divClassTurn.setAttribute("hidden", "")
-    winnerLines[3].style.height = "100%";
-    divClassTurn.hidden = true;
-    winner.style.fontSize = "5vmax";
-    winner.innerHTML = `${boxes[3].innerHTML} Wins`;
-    winnerImage.style.opacity = "1";
-    gameOver = true;
-    resetButton.style.top = "8.5%";
-  } else if (
-    boxes[1].innerHTML === boxes[4].innerHTML &&
-    boxes[4].innerHTML === boxes[7].innerHTML &&
-    boxes[1].innerHTML !== ""
-  ) {
-    // divClassTurn.setAttribute("hidden", "")
-    winnerLines[4].style.height = "100%";
-    divClassTurn.hidden = true;
-    winner.style.fontSize = "5vmax";
-    winner.innerHTML = `${boxes[4].innerHTML} Wins`;
-    winnerImage.style.opacity = "1";
-    gameOver = true;
-    resetButton.style.top = "8.5%";
-  } else if (
-    boxes[2].innerHTML === boxes[5].innerHTML &&
-    boxes[5].innerHTML === boxes[8].innerHTML &&
-    boxes[2].innerHTML !== ""
-  ) {
-    // divClassTurn.setAttribute("hidden", "")
-    winnerLines[5].style.height = "100%";
-    divClassTurn.hidden = true;
-    winner.style.fontSize = "5vmax";
-    winner.innerHTML = `${boxes[5].innerHTML} Wins`;
-    winnerImage.style.opacity = "1";
-    gameOver = true;
-    resetButton.style.top = "8.5%";
-  } else if (
-    boxes[0].innerHTML === boxes[4].innerHTML &&
-    boxes[4].innerHTML === boxes[8].innerHTML &&
-    boxes[0].innerHTML !== ""
-  ) {
-    // divClassTurn.setAttribute("hidden", "")
-    winnerLines[6].style.opacity = "1";
-    divClassTurn.hidden = true;
-    winner.style.fontSize = "5vmax";
-    winner.innerHTML = `${boxes[4].innerHTML} Wins`;
-    winnerImage.style.opacity = "1";
-    gameOver = true;
-    resetButton.style.top = "8.5%";
-  } else if (
-    boxes[2].innerHTML === boxes[4].innerHTML &&
-    boxes[4].innerHTML === boxes[6].innerHTML &&
-    boxes[2].innerHTML !== ""
-  ) {
-    // divClassTurn.setAttribute("hidden", "")
-    winnerLines[7].style.opacity = "1";
-    divClassTurn.hidden = true;
-    winner.style.fontSize = "5vmax";
-    winner.innerHTML = `${boxes[4].innerHTML} Wins`;
-    winnerImage.style.opacity = "1";
-    gameOver = true;
-    resetButton.style.top = "8.5%";
+  for (let i = 0; i < winChance.length; i++) {
+    if (
+      boxContent[winChance[i][0]].innerHTML ===
+        boxContent[winChance[i][1]].innerHTML &&
+      boxContent[winChance[i][1]].innerHTML ===
+        boxContent[winChance[i][2]].innerHTML &&
+      boxContent[winChance[i][1]].innerHTML !== ""
+    ) {
+      winLineShow(winChance[i], "100");
+      divClassTurn.classList.add("winner");
+      divClassTurn.innerHTML = `${boxContent[winChance[i][1]].innerHTML} Win`;
+      gameOver = true;
+      winSound.play();
+    } else {
+      winLineShow(winChance[i], "0");
+    }
   }
 };
 
-// Convert HTML collections into an array
-Array.from(boxes);
-Array.from(winnerLines);
+const winLineShow = (trio, value) => {
+  const currentWinIndex = winChance.indexOf(trio);
+  switch (currentWinIndex) {
+    case 0:
+    case 1:
+    case 2:
+      winnerLines[currentWinIndex].style.width = `${value}%`;
+      break;
+    case 3:
+    case 4:
+    case 5:
+      winnerLines[currentWinIndex].style.height = `${value}%`;
+      break;
+    case 6:
+    case 7:
+      winnerLines[currentWinIndex].style.opacity = value;
+      break;
+  }
+};
 
-// main Game Logic
-boxes.forEach((element) => {
+boxes.forEach((element, index) => {
   element.addEventListener("click", (e) => {
-    if (e.currentTarget.innerHTML === "" && !gameOver) {
-      e.currentTarget.innerHTML = currentPlayer;
-      currentPlayer = currentPlayer === "X" ? "o" : "X";
-      changeTurn();
+    if (boxContent[index].innerHTML === "" && !gameOver) {
+      turnSound.play();
+      boxContent[index].innerHTML = turn;
+      turn = turn === "X" ? "o" : "X";
       divClassTurn.innerHTML = `Turn For <span>${turn}</span>`;
       chances++;
       checkWin();
-      if (chances === 9) {
+      if (chances === 9 && !gameOver) {
         divClassTurn.innerHTML = "Game Over";
+        endSound.play();
       }
     }
   });
 });
 
-// reset button Logic
 resetButton.addEventListener("click", () => {
-  boxes.forEach((element) => {
+  divClassTurn.innerHTML = `Turn For <span>${turn}</span>`;
+  divClassTurn.classList.remove("winner");
+  boxContent.forEach((element) => {
     element.innerHTML = "";
   });
-  turn = "X";
-  currentPlayer = "X";
-  chances = 0;
+  resetSound.play();
   gameOver = false;
-  winnerImage.style.opacity = "0";
-  winner.innerHTML = "";
-  divClassTurn.hidden = false;
-  divClassTurn.innerHTML = `Turn For <span>${turn}</span>`;
-  resetButton.style.top = "1%";
-  resetButton.classList.add("btnHover");
-  winnerLines[0].style.width = "0%";
-  winnerLines[1].style.width = "0%";
-  winnerLines[2].style.width = "0%";
-  winnerLines[3].style.height = "0%";
-  winnerLines[4].style.height = "0%";
-  winnerLines[5].style.height = "0%";
-  winnerLines[6].style.opacity = "0";
-  winnerLines[7].style.opacity = "0";
-  setTimeout(() => {
-    resetButton.classList.remove("btnHover");
-  }, 200);
+  chances = 0;
+  turn = "X";
+  checkWin();
 });

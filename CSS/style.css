@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Quicksand&family=Rubik&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
 }
 
 html {
@@ -17,21 +18,26 @@ body {
 }
 
 #header {
-  display: flex;
-  align-items: center;
-  height: 10vmin;
+  padding: 1rem 0rem;
   background: #1b202c;
+  box-shadow: 0 0 1rem rgba(255, 255, 255, 0.293);
 }
 
 #navbar {
   text-transform: uppercase;
+  position: relative;
   letter-spacing: 0.7rem;
   font-size: 2rem;
   color: white;
   width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+}
+
+.home {
+  position: absolute;
+  top: 50%;
+  left: 3%;
 }
 
 #gameContainer {
@@ -47,37 +53,32 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffff7c;
-  text-shadow: 0 0 0.1rem #ffff7c, 0 0 0.2rem #ffff7c, 0 0 0.3rem #ffff7c,
-    0 0 0.4rem #ffff7c, 0 0 0.5rem #ffff7c, 0 0 0.6rem #ffff7c,
-    0 0 0.7rem #ffff7c, 0 0 0.8rem #ffff7c, 0 0 0.9rem #ffff7c;
+  color: #00ffc3;
+  text-shadow: 0 0 0.1rem #00ffc3, 0 0 0.2rem #00ffc3, 0 0 0.3rem #00ffc3,
+    0 0 0.4rem #00ffc3, 0 0 0.5rem #00ffc3, 0 0 0.6rem #00ffc3,
+    0 0 0.7rem #00ffc3;
 }
 
-.logo {
-  height: 7vmin;
-  margin-left: 3rem;
+.boxContent {
+  position: relative;
+  z-index: -2;
 }
 
 .game {
   position: relative;
   display: grid;
-  /* width: 70vmin;
-  height: 70vmin; */
   grid-template-rows: repeat(3, 10vmax);
   grid-template-columns: repeat(3, 10vmax);
-  /* grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(3, 1fr); */
 }
 
 .lines {
   border-radius: 22rem;
   position: absolute;
-  background: #00ffc3;
-  box-shadow: 0 0 0.1rem #00ffc3, 0 0 0.2rem #00ffc3, 0 0 0.3rem #00ffc3,
-    0 0 0.4rem #00ffc3, 0 0 0.5rem #00ffc3, 0 0 0.6rem #00ffc3,
-    0 0 0.7rem #00ffc3, 0 0 0.8rem #00ffc3, 0 0 0.9rem #00ffc3, 0 0 1rem #00ffc3,
-    0 0 1.2rem #00ffc3, 0 0 1.3rem #00ffc3, 0 0 1.4rem #00ffc3,
-    0 0 1.5rem #00ffc3;
+  z-index: -2;
+  background: #ffff7c;
+  box-shadow: 0 0 0.1rem #ffff7c, 0 0 0.2rem #ffff7c, 0 0 0.3rem #ffff7c,
+    0 0 0.4rem #ffff7c, 0 0 0.5rem #ffff7c, 0 0 0.6rem #ffff7c,
+    0 0 0.7rem #ffff7c, 0 0 0.8rem #ffff7c, 0 0 0.9rem #ffff7c, 0 0 1rem;
 }
 
 .line1 {
@@ -102,46 +103,38 @@ body {
 }
 
 .gameInfo {
-  position: relative;
   font-size: 2vmax;
-  width: 30vmax;
+  min-width: 30vmax;
   color: #ffffff;
 }
 
-.winnerImage {
-  opacity: 0;
-  transition: all 0.5s ease;
+.turn {
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 .winner {
   transition: all 0.3s ease;
   letter-spacing: 0.5rem;
+  font-size: 4vw;
   color: salmon;
   text-shadow: 0 0 0.1rem salmon, 0 0 0.2rem salmon, 0 0 0.3rem salmon,
-    0 0 0.4rem salmon, 0 0 0.5rem salmon, 0 0 0.6rem salmon;
+    0 0 0.4rem salmon;
   text-transform: uppercase;
 }
 
-.turn {
-  margin-bottom: 5rem;
-  letter-spacing: 0.5rem;
-  text-transform: uppercase;
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.winnerImage img {
-  width: 20vmax;
-  margin-top: 5rem;
+.gameInfoText {
+  padding: 1rem 0rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .btn {
-  top: 1%;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   cursor: pointer;
-  right: 0%;
-  position: absolute;
   padding: 0.7rem 2rem;
   border: none;
   outline: none;
@@ -152,18 +145,15 @@ body {
   font-size: 1.3vmax;
 }
 
-.btnHover {
-  box-shadow: inset -0.5rem -0.5rem 1rem #0a1535,
-    inset 0.5rem 0.5rem 1rem #02050d;
-}
-
 .winnerLines {
-  background: hotpink;
+  background: rgb(255, 192, 224);
   position: absolute;
+  z-index: -1;
   border-radius: 20rem;
-  transition: all 1s ease;
-  box-shadow: 0 0 0.1rem hotpink, 0 0 0.2rem hotpink, 0 0 0.3rem hotpink,
-    0 0 0.4rem hotpink, 0 0 0.5rem hotpink, 0 0 0.6rem hotpink;
+  transition: all 0.5s ease;
+  box-shadow: 0 0 0.1rem rgb(255, 192, 224), 0 0 0.2rem rgb(255, 192, 224),
+    0 0 0.3rem rgb(255, 192, 224), 0 0 0.4rem rgb(255, 192, 224),
+    0 0 0.5rem rgb(255, 192, 224);
 }
 
 .winnerLine1 {
@@ -218,7 +208,6 @@ body {
   height: 2%;
 }
 
-/* media query */
 @media (max-width: 450px) {
   #gameContainer {
     flex-direction: column;
@@ -236,7 +225,7 @@ body {
     font-size: 6vw;
   }
 
-  .winnerImage{
+  .winnerImage {
     display: flex;
     justify-content: center;
   }
@@ -257,11 +246,11 @@ body {
     font-size: 18vw;
   }
 
-  .winnerImage{
+  .winnerImage {
     display: flex;
     justify-content: center;
   }
-  
+
   .winnerImage img {
     width: 60vw;
   }
@@ -279,12 +268,3 @@ body {
     font-size: 5vw;
   }
 }
-
-/* font size of html always 1vw set karna vmax or vmin mat karna otherwise media query lagate wakt rem ki unit bigde gi */
-
-/* responsiveness ka plan */
-
-/* step 1 : me responsiveness ke maamle me vmax unit use hogi jisse ek particular width tak responsive hoga each element . step 2 : fir media query lagegi and fir wrap ho jayega . step 3 : me vw unit use hogi usse or smaller devices me responsive hoga web page to ye hai complete responsiveness ka plan*/
-
-/* !important */
-/* media query fire hote hi saari vmax waali units ko vw me change kar dena */
