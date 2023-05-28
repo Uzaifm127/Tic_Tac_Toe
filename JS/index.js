@@ -67,7 +67,7 @@ boxes.forEach((element, index) => {
     if (boxContent[index].innerHTML === "" && !gameOver) {
       turnSound.play();
       boxContent[index].innerHTML = turn;
-      turn = turn === "X" ? "o" : "X";
+      turn = turn === "X" ? "0" : "X";
       divClassTurn.innerHTML = `Turn For <span>${turn}</span>`;
       chances++;
       checkWin();
