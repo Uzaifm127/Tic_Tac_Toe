@@ -14,9 +14,14 @@ const turnSound = new Audio("/Tic_Tac_Toe/Music/chance.wav");
 const resetSound = new Audio("/Tic_Tac_Toe/Music/reset.wav");
 const winSound = new Audio("/Tic_Tac_Toe/Music/win.wav");
 const winChance = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontally
-  [0, 3, 6], [1, 4, 7], [2, 5, 8], // vertically
-  [0, 4, 8], [2, 4, 6], // diagonally
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8], // horizontally
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8], // vertically
+  [0, 4, 8],
+  [2, 4, 6], // diagonally
 ];
 let turn = "X";
 let chances = 0;
