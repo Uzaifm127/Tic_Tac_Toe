@@ -8,7 +8,7 @@
 }
 
 html {
-  /* font-size: 1vw; */
+  font-size: 1vmax;
   scroll-behavior: smooth;
   font-family: "Poppins", sans-serif;
 }
@@ -27,7 +27,7 @@ body {
   text-transform: uppercase;
   position: relative;
   letter-spacing: 0.7rem;
-  font-size: 1.55rem;
+  font-size: 2rem;
   color: white;
   width: 100%;
   display: flex;
@@ -41,15 +41,16 @@ body {
 }
 
 #gameContainer {
-  height: 88.5vh;
+  height: 89.5vh;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
 .boxes {
   cursor: pointer;
-  font-size: 6rem;
+  font-size: 7rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,8 +68,8 @@ body {
 .game {
   position: relative;
   display: grid;
-  grid-template-rows: repeat(3, 8rem);
-  grid-template-columns: repeat(3, 8rem);
+  grid-template-rows: repeat(3, 11rem);
+  grid-template-columns: repeat(3, 11rem);
 }
 
 .lines {
@@ -103,8 +104,8 @@ body {
 }
 
 .gameInfo {
-  font-size: 2vmax;
-  min-width: 30vmax;
+  font-size: 2rem;
+  min-width: 38rem;
   color: #ffffff;
 }
 
@@ -117,7 +118,7 @@ body {
 .winner {
   transition: all 0.3s ease;
   letter-spacing: 0.5rem;
-  font-size: 4vw;
+  font-size: 4rem;
   color: salmon;
   text-shadow: 0 0 0.1rem salmon, 0 0 0.2rem salmon, 0 0 0.3rem salmon,
     0 0 0.4rem salmon;
@@ -141,7 +142,7 @@ body {
   color: white;
   background: #1b202c;
   border-radius: 0.4rem;
-  font-size: 1.3vmax;
+  font-size: 1.2rem;
 }
 
 .winnerLines {
@@ -207,63 +208,40 @@ body {
   height: 2%;
 }
 
-@media (max-width: 450px) {
-  #gameContainer {
-    flex-direction: column;
-    justify-content: space-evenly;
-    height: 90vmax;
+@media (max-width: 1000px) {
+  #navbar {
+    font-size: 20px;
   }
-
-  .game {
-    grid-template-rows: repeat(3, 16vw);
-    grid-template-columns: repeat(3, 16vw);
+  #header {
+    padding: 10px 0px;
   }
-
   .gameInfo {
-    width: 70vw;
-    font-size: 6vw;
+    font-size: 20px;
+    min-width: 380px;
   }
-
-  .winnerImage {
-    display: flex;
-    justify-content: center;
-  }
-
   .btn {
-    font-size: 3vw;
-    padding: 1.4rem 2rem;
+    padding: 7px 20px;
+    font-size: 12px;
+  }
+  .winner{
+    font-size: 40px;
   }
 }
 
-@media (max-width: 290px) {
-  .game {
-    grid-template-rows: repeat(3, 25vw);
-    grid-template-columns: repeat(3, 25vw);
+@media (max-width: 700px) {
+  #gameContainer{
+    flex-direction: column;
   }
+}
 
-  .boxes {
-    font-size: 18vw;
-  }
-
-  .winnerImage {
-    display: flex;
-    justify-content: center;
-  }
-
-  .winnerImage img {
-    width: 60vw;
-  }
-
-  .winner {
-    font-size: 13vw !important;
-  }
-
+@media (max-width: 400px) {
   .gameInfo {
-    width: 88vw;
-    font-size: 6vw;
+    min-width: 280px;
   }
-
-  .btn {
-    font-size: 5vw;
+  #navbar {
+    font-size: 16px;
+  }
+  .winner{
+    font-size: 35px;
   }
 }

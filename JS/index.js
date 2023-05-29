@@ -67,7 +67,7 @@ boxes.forEach((element, index) => {
     if (boxContent[index].innerHTML === "" && !gameOver) {
       turnSound.play();
       boxContent[index].innerHTML = turn;
-      turn = turn === "X" ? "0" : "X";
+      turn = turn === "X" ? "O" : "X";
       divClassTurn.innerHTML = `Turn For <span>${turn}</span>`;
       chances++;
       checkWin();
@@ -80,14 +80,14 @@ boxes.forEach((element, index) => {
 });
 
 resetButton.addEventListener("click", () => {
+  turn = "X";
+  resetSound.play();
+  gameOver = false;
+  chances = 0;
   divClassTurn.innerHTML = `Turn For <span>${turn}</span>`;
   divClassTurn.classList.remove("winner");
   boxContent.forEach((element) => {
     element.innerHTML = "";
   });
-  resetSound.play();
-  gameOver = false;
-  chances = 0;
-  turn = "X";
   checkWin();
 });
